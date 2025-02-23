@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  View,
   Text,
   StyleSheet,
   ScrollView,
@@ -28,10 +27,12 @@ export function DeveloperInfoScreen() {
       </TouchableOpacity>
       <Text style={styles.sectionTitle}>Contact</Text>
       <Text style={styles.text}>Email: deepdas@gmail.com</Text>
-      <Text style={styles.text}>
-        LinkedIn: https://www.linkedin.com/in/deep-das-4b5aa527b/
-      </Text>
-      <Text style={styles.text}>GitHub: https://github.com/THE-DEEPDAS</Text>
+      <TouchableOpacity onPress={() => Linking.openURL("https://www.linkedin.com/in/deep-das-4b5aa527b/")}>
+        <Text style={styles.link}>My LinkedIn</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => Linking.openURL("https://github.com/THE-DEEPDAS")}>
+        <Text style={styles.link}>My GitHub</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
