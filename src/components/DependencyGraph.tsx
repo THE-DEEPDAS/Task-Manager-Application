@@ -1,13 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useTaskStore } from "../store/taskStore";
 import Chart from "chart.js/auto";
-
-// Extend ChartTypeRegistry to include "matrix"
-declare module "chart.js/auto" {
-  interface ChartTypeRegistry {
-    matrix: {};
-  }
-}
 import "chartjs-chart-matrix";
 
 export function DependencyGraph() {
@@ -65,7 +58,7 @@ export function DependencyGraph() {
       maintainAspectRatio: boolean;
       scales: {
         x: {
-          type: string;
+          type: "category";
           labels: string[];
           layout: {
             padding: {
@@ -81,7 +74,7 @@ export function DependencyGraph() {
           };
         };
         y: {
-          type: string;
+          type: "category";
           labels: string[];
         };
       };
