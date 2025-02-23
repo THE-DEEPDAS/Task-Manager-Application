@@ -5,34 +5,53 @@ export function HelpScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Help</Text>
-      <Text style={styles.sectionTitle}>How to Run the App</Text>
+      <Text style={styles.sectionTitle}>How to Use the App</Text>
       <Text style={styles.text}>
-        1. Ensure you have Node.js and npm installed on your machine.
+        Welcome to the Task Manager app! This guide will help you understand how
+        to use the app effectively.
+      </Text>
+      <Text style={styles.sectionTitle}>Adding a New Task</Text>
+      <Text style={styles.text}>
+        1. Navigate to the "Add New Task" screen by tapping the "+" button on
+        the main screen.
       </Text>
       <Text style={styles.text}>
-        2. Clone the repository to your local machine.
+        2. Fill in the task details including name, category, priority (0-100),
+        deadline (in days), and any dependencies.
       </Text>
       <Text style={styles.text}>
-        3. Navigate to the project directory and run `npm install` to install
-        dependencies.
+        3. Tap the "Add Task" button to save the task.
+      </Text>
+      <Text style={styles.sectionTitle}>Managing Tasks</Text>
+      <Text style={styles.text}>
+        - On the main screen, you can view all your tasks. Use the filters to
+        narrow down tasks by category, priority, or status.
       </Text>
       <Text style={styles.text}>
-        4. Run `npm start` to start the development server.
+        - To update a task's status, use the dropdown menu next to the task.
       </Text>
       <Text style={styles.text}>
-        5. Use an emulator or a physical device to run the app.
+        - To remove a task, tap the "Remove" button next to the task.
       </Text>
-      <Text style={styles.sectionTitle}>Features</Text>
+      <Text style={styles.sectionTitle}>Viewing Overdue Tasks</Text>
       <Text style={styles.text}>
-        - Add new tasks with a name, category, priority, deadline, and
-        dependencies.
+        - Navigate to the "Overdue Tasks" screen to see a list of tasks that are
+        past their deadline.
+      </Text>
+      <Text style={styles.sectionTitle}>Visualizing Dependencies</Text>
+      <Text style={styles.text}>
+        - Navigate to the "Dependency Graph" screen to see a visual
+        representation of task dependencies.
+      </Text>
+      <Text style={styles.sectionTitle}>Developers</Text>
+      <Text style={styles.text}>
+        - Deep Das: A passionate software developer with expertise in web and
+        mobile application development.
       </Text>
       <Text style={styles.text}>
-        - View and manage tasks, including updating their status and removing
-        them.
+        - Bodhini Jain: A skilled developer with a focus on creating efficient
+        and user-friendly applications.
       </Text>
-      <Text style={styles.text}>- View a dependency graph of tasks.</Text>
-      <Text style={styles.text}>- View overdue tasks.</Text>
     </ScrollView>
   );
 }
@@ -61,3 +80,5 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 });
+
+export default HelpScreen;

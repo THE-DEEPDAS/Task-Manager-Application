@@ -2,7 +2,7 @@
   "expo": {
     "name": "Task Manager",
     "slug": "task-scheduler",
-    "version": "1.0.0",
+    "version": "1.0.",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -16,7 +16,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.yourcompany.taskmanager",
-      "buildNumber": "1"
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +34,12 @@
         "projectId": "c9b7ff3a-8be8-4dc5-aaaa-39385fdcb0b8"
       }
     },
-    "owner": "deepdblm"
+    "owner": "deepdblm",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c9b7ff3a-8be8-4dc5-aaaa-39385fdcb0b8"
+    }
   }
 }

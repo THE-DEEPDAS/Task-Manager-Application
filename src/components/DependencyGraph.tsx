@@ -3,7 +3,7 @@ import { useTaskStore } from "../store/taskStore";
 import Chart from "chart.js/auto";
 
 // Extend ChartTypeRegistry to include "matrix"
-declare module 'chart.js/auto' {
+declare module "chart.js/auto" {
   interface ChartTypeRegistry {
     matrix: {};
   }
@@ -111,7 +111,9 @@ export function DependencyGraph() {
               }))
             ),
             backgroundColor: (context: any) => {
-              const data = context.dataset.data[context.dataIndex] as MatrixDataPoint;
+              const data = context.dataset.data[
+                context.dataIndex
+              ] as MatrixDataPoint;
               return data.v === 1
                 ? "rgba(75, 192, 192, 0.8)"
                 : "rgba(220, 220, 220, 0.8)";
@@ -149,7 +151,9 @@ export function DependencyGraph() {
             callbacks: {
               title: () => "",
               label: (context: any) => {
-                const data = context.dataset.data[context.dataIndex] as MatrixDataPoint;
+                const data = context.dataset.data[
+                  context.dataIndex
+                ] as MatrixDataPoint;
                 if (data.v === 1) {
                   return `${nodes[data.y]} → ${nodes[data.x]}`;
                 }
@@ -177,3 +181,5 @@ export function DependencyGraph() {
     </div>
   );
 }
+
+export default DependencyGraph;

@@ -5,6 +5,8 @@ import { TaskListScreen } from "../screens/TaskListScreen";
 import { AddTaskScreen } from "../screens/AddTaskScreen";
 import { HelpScreen } from "../screens/HelpScreen";
 import { DeveloperInfoScreen } from "../screens/DeveloperInfoScreen";
+import { OverdueTasks } from "../components/OverdueTasks";
+import { DependencyGraph } from "../components/DependencyGraph";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +51,20 @@ export function AppNavigator() {
           component={DeveloperInfoScreen}
           options={{
             title: "Developer Info",
+          }}
+        />
+        <Stack.Screen
+          name="OverdueTasks"
+          component={OverdueTasks}
+          options={{
+            title: "Overdue Tasks",
+          }}
+        />
+        <Stack.Screen
+          name="DependencyGraph"
+          component={DependencyGraph}
+          options={{
+            title: "Dependency Graph",
           }}
         />
       </Stack.Navigator>
