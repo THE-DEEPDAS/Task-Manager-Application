@@ -1,8 +1,10 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TaskListScreen } from '../screens/TaskListScreen';
-import { AddTaskScreen } from '../screens/AddTaskScreen';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { TaskListScreen } from "../screens/TaskListScreen";
+import { AddTaskScreen } from "../screens/AddTaskScreen";
+import { HelpScreen } from "../screens/HelpScreen";
+import { DeveloperInfoScreen } from "../screens/DeveloperInfoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,11 +15,11 @@ export function AppNavigator() {
         initialRouteName="Tasks"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#3B82F6',
+            backgroundColor: "#3B82F6",
           },
-          headerTintColor: '#FFFFFF',
+          headerTintColor: "#FFFFFF",
           headerTitleStyle: {
-            fontWeight: '600',
+            fontWeight: "600",
           },
         }}
       >
@@ -25,14 +27,28 @@ export function AppNavigator() {
           name="Tasks"
           component={TaskListScreen}
           options={{
-            title: 'Task Manager',
+            title: "Task Manager",
           }}
         />
         <Stack.Screen
           name="AddTask"
           component={AddTaskScreen}
           options={{
-            title: 'Add New Task',
+            title: "Add New Task",
+          }}
+        />
+        <Stack.Screen
+          name="Help"
+          component={HelpScreen}
+          options={{
+            title: "Help",
+          }}
+        />
+        <Stack.Screen
+          name="DeveloperInfo"
+          component={DeveloperInfoScreen}
+          options={{
+            title: "Developer Info",
           }}
         />
       </Stack.Navigator>

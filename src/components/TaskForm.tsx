@@ -1,19 +1,24 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { TaskFormData } from '../types';
-import { useTaskStore } from '../store/taskStore';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { TaskFormData } from "../types";
+import { useTaskStore } from "../store/taskStore";
 
 export function TaskForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<TaskFormData>();
-  const addTask = useTaskStore(state => state.addTask);
-  const tasks = useTaskStore(state => state.tasks);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TaskFormData>();
+  const addTask = useTaskStore((state) => state.addTask);
+  const tasks = useTaskStore((state) => state.tasks);
 
   const onSubmit = (data: TaskFormData) => {
     try {
       addTask(data);
       reset();
     } catch (error) {
-      alert(error instanceof Error ? error.message : 'An error occurred');
+      alert(error instanceof Error ? error.message : "An error occurred");
     }
   };
 
@@ -25,11 +30,13 @@ export function TaskForm() {
         </label>
         <input
           type="text"
-          {...register('task_name', { required: 'Task name is required' })}
+          {...register("task_name", { required: "Task name is required" })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
         {errors.task_name && (
-          <p className="mt-1 text-sm text-red-600">{errors.task_name.message}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {errors.task_name.message}
+          </p>
         )}
       </div>
 
@@ -39,7 +46,7 @@ export function TaskForm() {
         </label>
         <input
           type="text"
-          {...register('category', { required: 'Category is required' })}
+          {...register("category", { required: "Category is required" })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
         {errors.category && (
@@ -49,14 +56,14 @@ export function TaskForm() {
 
       <div>
         <label className="block text-sm font-medium text-gray-700">
-          Priority (1-100)
+          Priority (0-100)
         </label>
         <input
           type="number"
-          {...register('priority', {
-            required: 'Priority is required',
-            min: { value: 1, message: 'Priority must be at least 1' },
-            max: { value: 100, message: 'Priority must be at most 100' },
+          {...register("priority", {
+            required: "Priority is required",
+            min: { value: 0, message: "Priority must be at least 0" },
+            max: { value: 100, message: "Priority must be at most 100" },
           })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
@@ -71,9 +78,9 @@ export function TaskForm() {
         </label>
         <input
           type="number"
-          {...register('deadline', {
-            required: 'Deadline is required',
-            min: { value: 1, message: 'Deadline must be at least 1 day' },
+          {...register("deadline", {
+            required: "Deadline is required",
+            min: { value: 1, message: "Deadline must be at least 1 day" },
           })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
@@ -88,11 +95,11 @@ export function TaskForm() {
         </label>
         <input
           type="text"
-          {...register('dependencies')}
+          {...register("dependencies")}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
         <p className="mt-1 text-sm text-gray-500">
-          Available tasks: {tasks.map(t => t.task_name).join(', ')}
+          Available tasks: {tasks.map((t) => t.task_name).join(", ")}
         </p>
       </div>
 
