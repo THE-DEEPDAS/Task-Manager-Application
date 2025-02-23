@@ -1,0 +1,42 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "build:android": "eas build --platform android",
+    "build:ios": "eas build --platform ios",
+    "submit:android": "eas submit --platform android",
+    "submit:ios": "eas submit --platform ios"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.22.0",
+    "@react-navigation/native": "^6.1.10",
+    "@react-navigation/native-stack": "^6.9.18",
+    "date-fns": "^3.3.1",
+    "expo": "^50.0.6",
+    "expo-status-bar": "~1.11.1",
+    "expo-updates": "~0.24.13",
+    "expo-dev-client": "~3.3.12",
+    "react": "18.2.0",
+    "react-native": "0.73.4",
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-reanimated": "~3.6.2",
+    "react-native-safe-area-context": "4.8.2",
+    "react-native-screens": "~3.29.0",
+    "react-native-svg": "14.1.0",
+    "react-native-vector-icons": "^10.0.3",
+    "zustand": "^4.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@types/react": "~18.2.45",
+    "@types/react-native": "~0.73.0",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "typescript": "^5.3.3"
+  }
+}

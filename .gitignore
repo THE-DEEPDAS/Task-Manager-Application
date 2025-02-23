@@ -1,0 +1,35 @@
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# Environment
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# System
+.DS_Store
+*.pem
+
+# IDE
+.vscode/*
+.idea
