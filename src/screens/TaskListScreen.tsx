@@ -112,7 +112,6 @@ export function TaskListScreen({ navigation }: any) {
 
   return (
     <View style={commonStyles.container}>
-      <Header title="Task Manager" />
       <FlatList
         data={tasks}
         renderItem={renderItem}
@@ -140,9 +139,9 @@ export function TaskListScreen({ navigation }: any) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.navButton}
-          onPress={() => navigation.navigate("Scheduler")}
+          onPress={() => navigation.navigate("Schedule")}
         >
-          <Text style={styles.navButtonText}>Scheduler</Text>
+          <Text style={styles.navButtonText}>Schedule</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity

@@ -2,11 +2,12 @@
   "expo": {
     "name": "Task Manager",
     "slug": "task-scheduler",
-    "version": "1.0.",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Task Scheduler.jpg",
     "userInterfaceStyle": "light",
     "splash": {
+      "image": "./assets/Task Scheduler.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
