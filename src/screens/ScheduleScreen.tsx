@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { useTaskStore } from "../store/taskStore";
 import { format, addDays } from "date-fns";
 
@@ -19,66 +19,187 @@ export function ScheduleScreen() {
     return acc;
   }, {} as Record<string, typeof tasks>);
 
+  const sortedDates = Object.keys(groupedTasks).sort(
+    (a, b) => new Date(a).getTime() - new Date(b).getTime()
+  );
+
   return (
-    <ScrollView style={styles.container}>
-      {Object.entries(groupedTasks)
-        .sort(
-          ([dateA], [dateB]) =>
-            new Date(dateA).getTime() - new Date(dateB).getTime()
-        )
-        .map(([date, tasksForDate]) => (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Image
+          source={require("../../assets/Task Scheduler.jpg")}
+          style={styles.logo}
+        />
+        <Text style={styles.headerText}>Task Schedule</Text>
+      </View>
+      <ScrollView style={styles.scheduleContainer}>
+        {sortedDates.map((date) => (
           <View key={date} style={styles.dateGroup}>
-            <Text style={styles.dateHeader}>
-              {format(new Date(date), "MMMM d, yyyy")}
-            </Text>
-            {tasksForDate.map((task) => (
-              <View key={task.id} style={styles.taskCard}>
-                <Text style={styles.taskName}>{task.task_name}</Text>
-                <Text style={styles.taskDetail}>Priority: {task.priority}</Text>
-                <Text style={styles.taskDetail}>Status: {task.status}</Text>
-              </View>
-            ))}
+            <View style={styles.dateHeader}>
+              <Text style={styles.dateHeaderText}>
+                {format(new Date(date), "EEEE, MMMM d, yyyy")}
+              </Text>
+            </View>
+            <View style={styles.timelineContainer}>
+              {groupedTasks[date]
+                .sort((a, b) => b.priority - a.priority)
+                .map((task) => (
+                  <View key={task.id} style={styles.taskCard}>
+                    <View
+                      style={[
+                        styles.priorityIndicator,
+                        { backgroundColor: getPriorityColor(task.priority) },
+                      ]}
+                    />
+                    <View style={styles.taskContent}>
+                      <Text style={styles.taskName}>{task.task_name}</Text>
+                      <View style={styles.taskDetails}>
+                        <Text style={styles.taskCategory}>{task.category}</Text>
+                        <Text style={styles.taskPriority}>
+                          Priority: {task.priority}
+                        </Text>
+                        <View
+                          style={[
+                            styles.statusBadge,
+                            { backgroundColor: getStatusColor(task.status) },
+                          ]}
+                        >
+                          <Text style={styles.statusText}>{task.status}</Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                ))}
+            </View>
           </View>
         ))}
-    </ScrollView>
+        {sortedDates.length === 0 && (
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>No tasks scheduled</Text>
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }
+
+const getPriorityColor = (priority: number) => {
+  if (priority >= 70) return "#EF4444";
+  if (priority >= 40) return "#F59E0B";
+  return "#10B981";
+};
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "Completed":
+      return "#059669";
+    case "In Progress":
+      return "#2563EB";
+    default:
+      return "#6B7280";
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F3F4F6",
   },
-  dateGroup: {
-    marginBottom: 20,
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
+    backgroundColor: "#FFFFFF",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E5E7EB",
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 12,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: "700",
+    color: "#111827",
+  },
+  scheduleContainer: {
+    flex: 1,
+  },
+  dateGroup: {
+    marginBottom: 24,
   },
   dateHeader: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#374151",
+    backgroundColor: "#3B82F6",
+    padding: 12,
+    marginHorizontal: 16,
+    borderRadius: 8,
     marginBottom: 12,
   },
+  dateHeaderText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  timelineContainer: {
+    paddingHorizontal: 16,
+  },
   taskCard: {
+    flexDirection: "row",
     backgroundColor: "#FFFFFF",
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 8,
+    borderRadius: 12,
+    marginBottom: 12,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    shadowRadius: 4,
+    elevation: 3,
+    overflow: "hidden",
+  },
+  priorityIndicator: {
+    width: 4,
+  },
+  taskContent: {
+    flex: 1,
+    padding: 16,
   },
   taskName: {
-    fontSize: 16,
-    fontWeight: "500",
+    fontSize: 18,
+    fontWeight: "600",
     color: "#1F2937",
+    marginBottom: 8,
   },
-  taskDetail: {
+  taskDetails: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  taskCategory: {
     fontSize: 14,
     color: "#6B7280",
-    marginTop: 4,
+  },
+  taskPriority: {
+    fontSize: 14,
+    color: "#6B7280",
+  },
+  statusBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  statusText: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  emptyContainer: {
+    padding: 24,
+    alignItems: "center",
+  },
+  emptyText: {
+    fontSize: 16,
+    color: "#6B7280",
   },
 });
 

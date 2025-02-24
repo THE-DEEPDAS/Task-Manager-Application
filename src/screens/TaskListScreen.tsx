@@ -11,6 +11,8 @@ import { useTaskStore } from "../store/taskStore";
 import { Task, TaskFilters } from "../types";
 import { format, addDays } from "date-fns";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { commonStyles } from "../styles/commonStyles";
+import { Header } from "../components/Header";
 
 export function TaskListScreen({ navigation }: any) {
   const [filters, setFilters] = useState<TaskFilters>({
@@ -109,7 +111,8 @@ export function TaskListScreen({ navigation }: any) {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
+      <Header title="Task Manager" />
       <FlatList
         data={tasks}
         renderItem={renderItem}

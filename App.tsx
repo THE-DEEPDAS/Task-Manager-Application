@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { connectDB } from "./src/db/mongodb";
 import { useTaskStore } from "./src/store/taskStore";
 import { TaskListScreen } from "./src/screens/TaskListScreen";
 import { AddTaskScreen } from "./src/screens/AddTaskScreen";
@@ -14,11 +14,10 @@ import { ScheduleScreen } from "./src/screens/ScheduleScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const fetchTasks = useTaskStore((state) => state.fetchTasks);
+  const loadTasks = useTaskStore((state) => state.loadTasks);
 
   useEffect(() => {
-    connectDB();
-    fetchTasks();
+    loadTasks();
   }, []);
 
   return (
@@ -27,12 +26,25 @@ export default function App() {
         initialRouteName="Tasks"
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#3B82F6",
+            backgroundColor: "#FFFFFF",
           },
-          headerTintColor: "#FFFFFF",
+          headerTintColor: "#111827",
           headerTitleStyle: {
             fontWeight: "600",
           },
+          headerLeft: () => (
+            <Image
+              source={require("./assets/Task Scheduler.jpg")}
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: 15,
+                marginRight: 10,
+              }}
+            />
+          ),
+          headerTitleAlign: "center",
+          headerShadowVisible: true,
         }}
       >
         <Stack.Screen
