@@ -27,7 +27,11 @@ export function AddTaskScreen({ navigation }: any) {
 
   const handleSubmit = async () => {
     try {
-      await addTask(formData);
+      const taskData = {
+        ...formData,
+        created_at: new Date().toISOString(),
+      };
+      await addTask(taskData);
       navigation.goBack();
     } catch (error) {
       Alert.alert(

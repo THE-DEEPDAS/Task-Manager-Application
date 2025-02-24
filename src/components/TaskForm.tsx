@@ -15,7 +15,7 @@ export function TaskForm() {
 
   const onSubmit = (data: TaskFormData) => {
     try {
-      addTask(data);
+      addTask({ ...data, created_at: new Date().toISOString() });
       reset();
     } catch (error) {
       alert(error instanceof Error ? error.message : "An error occurred");
